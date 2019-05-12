@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Timeline from './components/Timeline';
+import ScaleRange from './components/ScaleRange';
 
 function App() {
+  const [pixelsPerUnit, setPixelsPerUnit] = useState(30);
+  const [processes] = useState([
+    { applicationName: 'Google Chrome', arrivalTime: 1, burstTime: 2 },
+    { applicationName: 'Media Player', arrivalTime: 2, burstTime: 3 },
+    { applicationName: 'Visual Studio Code', arrivalTime: 3, burstTime: 4 }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <ScaleRange
+        value={pixelsPerUnit}
+        onChange={event => setPixelsPerUnit(event.target.value)}
+      />
+      <Timeline processes={processes} pixelsPerUnit={pixelsPerUnit} />
     </div>
   );
 }

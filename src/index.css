@@ -23,6 +23,11 @@ code {
     monospace;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+}
+
 .control {
   display: flex;
   flex-direction: column;

@@ -54,6 +54,12 @@
   height: 35px;
 }
 
+.timeline main .waiting {
+  display: inline-block;
+  background-color: rgba(255, 255, 0, 0.7);
+  height: 35px;
+}
+
 .timeline main .burst {
   display: inline-block;
   background-color: rgba(255, 0, 0, 0.7);

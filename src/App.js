@@ -3,12 +3,15 @@ import Timeline from './components/Timeline';
 import ScaleRange from './components/ScaleRange';
 import TimeRange from './components/TimeRange';
 import RunControl from './components/RunControl';
+import useRunner from './utils/runner';
 
 function App() {
   const [running, setRunning] = useState(false);
   const [pixelsPerUnit, setPixelsPerUnit] = useState(30);
-  const [secondsPerUnit, setSecondsPerUnit] = useState(1000);
+  const [quantum, setQuantum] = useState(1000);
   const [processes] = useState([]);
+
+  const runner = useRunner(running, quantum);
 
   return (
     <div className="app">
@@ -18,8 +21,8 @@ function App() {
           onChange={event => setPixelsPerUnit(event.target.value)}
         />
         <TimeRange
-          value={secondsPerUnit}
-          onChange={event => setSecondsPerUnit(event.target.value)}
+          value={quantum}
+          onChange={event => setQuantum(event.target.value)}
         />
         <RunControl
           status={running}

@@ -4,9 +4,9 @@ export default function TimeRange({ onChange, value }) {
   return (
     <label className="control">
       <p>
-        <strong>Tempo da simulação</strong>
+        <strong>Tempo do quantum</strong>
         <br />
-        <small>Segundos por unidade de tempo</small>
+        <small>Milissegundos por quantum</small>
       </p>
       <input
         type="range"

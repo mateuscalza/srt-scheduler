@@ -6,12 +6,11 @@ import RunControl from './components/RunControl';
 import useRunner from './utils/runner';
 
 function App() {
-  const [running, setRunning] = useState(false);
   const [pixelsPerUnit, setPixelsPerUnit] = useState(30);
   const [quantum, setQuantum] = useState(1000);
   const [processes] = useState([]);
 
-  const runner = useRunner(running, quantum);
+  const runner = useRunner(quantum);
 
   return (
     <div className="app">
@@ -25,9 +24,9 @@ function App() {
           onChange={event => setQuantum(event.target.value)}
         />
         <RunControl
-          status={running}
-          onStart={() => setRunning(true)}
-          onStop={() => setRunning(false)}
+          status={runner.running}
+          onStart={runner.run}
+          onStop={runner.stop}
         />
       </div>
       <Timeline processes={processes} pixelsPerUnit={pixelsPerUnit} />

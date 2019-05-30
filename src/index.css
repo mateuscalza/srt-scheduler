@@ -35,6 +35,7 @@ code {
   padding: 10px;
   border-radius: 6px;
   background-color: rgba(50, 50, 50, 0.04);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .control p {
@@ -50,6 +51,7 @@ code {
   padding: 10px;
   border-radius: 6px;
   background-color: rgba(50, 50, 50, 0.04);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .timeline .process {
@@ -119,7 +121,7 @@ code {
 .buttons button {
   padding: 10px;
   border: none;
-  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
 }

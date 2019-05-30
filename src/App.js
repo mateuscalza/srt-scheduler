@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import Timeline from './components/Timeline';
 import ScaleRange from './components/ScaleRange';
 import TimeRange from './components/TimeRange';
+import RunControl from './components/RunControl';
 
 function App() {
+  const [running, setRunning] = useState(false);
   const [pixelsPerUnit, setPixelsPerUnit] = useState(30);
   const [secondsPerUnit, setSecondsPerUnit] = useState(1000);
-  const [processes] = useState([
-    { applicationName: 'Google Chrome', arrivalTime: 1, waitingTime: 1, burstTime: 2 },
-    { applicationName: 'Media Player', arrivalTime: 2, waitingTime: 2, burstTime: 3 },
-    { applicationName: 'Visual Studio Code', arrivalTime: 3, waitingTime: 3, burstTime: 4 }
-  ]);
+  const [processes] = useState([]);
 
   return (
     <div className="app">
@@ -22,6 +20,11 @@ function App() {
         <TimeRange
           value={secondsPerUnit}
           onChange={event => setSecondsPerUnit(event.target.value)}
+        />
+        <RunControl
+          status={running}
+          onStart={() => setRunning(true)}
+          onStop={() => setRunning(false)}
         />
       </div>
       <Timeline processes={processes} pixelsPerUnit={pixelsPerUnit} />

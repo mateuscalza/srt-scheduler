@@ -1,5 +1,4 @@
 import React from 'react';
-import './Timeline.css';
 
 export default function Timeline({ processes, pixelsPerUnit }) {
   const processesTimeline = processes.map(item => {
@@ -39,7 +38,11 @@ export default function Timeline({ processes, pixelsPerUnit }) {
           ))}
         </header>
         {processesTimeline.map((item, index) => (
-          <div key={index} className="process" style={{ width: item.totalWidth }}>
+          <div
+            key={index}
+            className="process"
+            style={{ width: item.totalWidth }}
+          >
             <div className="arrival" style={{ width: item.arrivalWidth }} />
             <div className="waiting" style={{ width: item.waitingWidth }} />
             <div className="burst" style={{ width: item.burstWidth }} />

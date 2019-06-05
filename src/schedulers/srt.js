@@ -1,4 +1,4 @@
-export default function srt(current, queue) {
+export default function srt(current, processor, queue) {
   
 
 
@@ -12,7 +12,7 @@ export default function srt(current, queue) {
       
     },
     onQuantum(quantums) {
-      console.log('onQuantum', quantums)
+      console.log('onQuantum', quantums, queue)
     },
     onStart() {
       console.log('onStart')

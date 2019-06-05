@@ -30,6 +30,7 @@ code {
 
 .control {
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin: 10px;
   padding: 10px;
@@ -129,4 +130,10 @@ code {
 .buttons button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+  }
 }

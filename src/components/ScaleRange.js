@@ -4,7 +4,7 @@ export default function ScaleRange({ onChange, value }) {
   return (
     <label className="control">
       <p>
-        <strong>Escala do gráfico</strong>
+        <strong className="title">Escala do grafico</strong>
         <br />
         <small>Pixel por unidade de tempo</small>
       </p>

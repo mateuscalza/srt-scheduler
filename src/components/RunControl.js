@@ -17,7 +17,7 @@ export default function RunControl({ status, onStart, onStop }) {
   return (
     <label className="control">
       <p>
-        <strong>Controles</strong>
+        <strong className="title">Controles</strong>
         <br />
         <small>{status ? 'Em execução' : 'Parado'}</small>
       </p>
@@ -26,10 +26,11 @@ export default function RunControl({ status, onStart, onStop }) {
           style={{ marginRight: 10 }}
           disabled={status}
           onClick={handleStart}
+          className="start"
         >
           Iniciar
         </button>
-        <button disabled={!status} onClick={handleStop}>
+        <button className="stop" disabled={!status} onClick={handleStop}>
           Parar
         </button>
       </div>

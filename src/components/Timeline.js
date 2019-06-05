@@ -18,7 +18,7 @@ export default function Timeline({ processes, pixelsPerUnit }) {
   return (
     <div className="timeline">
       <aside>
-        <header>Processos</header>
+        <header className="title">Processos</header>
         {processes.map((item, index) => (
           <div key={index} className="process">
             <label>{item.applicationName}</label>

@@ -14,6 +14,23 @@ function App() {
 
   return (
     <div className="app">
+      <h1 className="title">
+        <span>S</span>
+        <span>R</span>
+        <span>T</span>
+        {' '}
+        <span>S</span>
+        <span>C</span>
+        <span>H</span>
+        <span>E</span>
+        <span>D</span>
+        <span>U</span>
+        <span>L</span>
+        <span>E</span>
+        <span>R</span>
+      </h1>
+      <h2>Simulador do escalonador SRT</h2>
+
       <div className="controls">
         <ScaleRange
           value={pixelsPerUnit}

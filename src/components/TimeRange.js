@@ -4,7 +4,7 @@ export default function TimeRange({ onChange, value }) {
   return (
     <label className="control">
       <p>
-        <strong>Tempo do quantum</strong>
+        <strong className="title">Tempo do quantum</strong>
         <br />
         <small>Milissegundos por quantum</small>
       </p>

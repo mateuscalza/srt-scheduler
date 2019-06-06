@@ -11,7 +11,7 @@ export default function TimeRange({ onChange, value }) {
       <input
         type="range"
         min={10}
-        max={5000}
+        max={10000}
         step={1}
         value={value}
         onChange={onChange}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocalStorage } from 'react-use';
 import Timeline from './components/Timeline';
 import ScaleRange from './components/ScaleRange';
@@ -13,7 +13,6 @@ function App() {
     30
   );
   const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
-  // const [processes] = useState([]);
 
   const runner = useRunner(msPerQuantum);
 

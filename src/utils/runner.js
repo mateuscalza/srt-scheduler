@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import randomColor from 'randomcolor';
 import srt from '../schedulers/srt';
+import jobs from '../config/jobs';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -25,9 +26,12 @@ export default function useRunner(msPerQuantum) {
     if (running) {
       // Ao iniciar reseta o tempo
       setTime(0);
-      scheduler.onStart();
+      setQueue([]);
+      if (scheduler.onStart) {
+        scheduler.onStart();
+      }
       initialized = true;
-    } else if (initialized) {
+    } else if (initialized && scheduler.onStop) {
       // Ao parar
       scheduler.onStop();
     }
@@ -45,7 +49,8 @@ export default function useRunner(msPerQuantum) {
       setColors(newColors);
 
       // Atualiza a fila
-      setQueue([time]);
+      const newJobs = jobs.filter(job => job.arrivalTime === time);
+      setQueue(currentQueue => [...currentQueue, ...newJobs]);
     }
   }, [time]);
 

@@ -19,7 +19,7 @@ export default function RunControl({ status, onStart, onStop }) {
       <p>
         <strong className="title">Controles</strong>
         <br />
-        <small>{status ? 'Em execução' : 'Parado'}</small>
+        <small>{status ? '[Em execução]' : '[Parado]'}</small>
       </p>
       <div className="buttons">
         <button

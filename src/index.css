@@ -290,4 +290,22 @@ input[type='range']:focus::-ms-fill-upper {
   .controls {
     flex-direction: column;
   }
+  h1.title {
+    font-size: 30px;
+    line-height: 2rem;
+    padding: 30px 15px 0px;
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(50, 50, 50, 1),
+      2px 2px 0px rgba(50, 50, 50, 1), 3px 3px 0px rgba(50, 50, 50, 1),
+      4px 4px 0px rgba(50, 50, 50, 1);
+  }
+  h2 {
+    line-height: 1.3rem;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    padding: 0px 15px 50px;
+    text-align: center;
+  }
 }

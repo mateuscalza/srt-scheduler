@@ -21,7 +21,7 @@ export default function RunControl({ status, onStart, onStop, time }) {
         <br />
         <small>{status ? 'Em execução' : 'Parado'}</small>
         <br />
-        <small>{time > 0 ? <>Quantuns: {time}</> : null}</small>
+        <small>Quantuns: {time > 0 ? time : 0}</small>
       </p>
       <div className="buttons">
         <button

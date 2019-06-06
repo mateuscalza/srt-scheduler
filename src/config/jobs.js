@@ -5,18 +5,18 @@ export default [
     burstTime: 2
   },
   {
-    applicationName: 'Visual Studio Code',
-    arrivalTime: 2,
-    burstTime: 4
-  },
-  {
-    applicationName: 'Media Player',
+    applicationName: 'Notepad',
     arrivalTime: 2,
     burstTime: 3
   },
   {
+    applicationName: 'Media Player',
+    arrivalTime: 2,
+    burstTime: 5
+  },
+  {
     applicationName: 'Netbeans',
-    arrivalTime: 1,
+    arrivalTime: 5,
     burstTime: 8
   }
 ];

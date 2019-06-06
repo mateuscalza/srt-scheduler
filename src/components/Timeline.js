@@ -1,33 +1,32 @@
 import React from 'react';
 
 export default function Timeline({ queue, pixelsPerQuantum }) {
-  // const processesTimeline = processes.map(item => {
-  //   const totalTime = item.arrivalTime + item.burstTime + item.waitingTime;
+  const processesTimeline = queue.map(item => {
+    const totalTime = item.arrivalTime + item.runningTime + item.waitingTime;
 
-  //   return {
-  //     ...item,
-  //     totalTime,
-  //     totalWidth: pixelsPerQuantum * totalTime,
-  //     arrivalWidth: pixelsPerQuantum * item.arrivalTime,
-  //     waitingWidth: pixelsPerQuantum * item.waitingTime,
-  //     burstWidth: pixelsPerQuantum * item.burstTime
-  //   };
-  // });
-  // const maxTime = Math.max(0, ...processesTimeline.map(item => item.totalTime));
+    return {
+      ...item,
+      totalTime,
+      totalWidth: pixelsPerQuantum * totalTime,
+      arrivalWidth: pixelsPerQuantum * item.arrivalTime,
+      waitingWidth: pixelsPerQuantum * item.waitingTime,
+      runningWidth: pixelsPerQuantum * item.runningTime
+    };
+  });
+  const maxTime = Math.max(0, ...processesTimeline.map(item => item.totalTime));
 
   return (
     <div className="timeline">
       <aside>
         <header className="title">Processos</header>
-        {/* {processes.map((item, index) => (
+        {queue.map((item, index) => (
           <div key={index} className="process">
             <label>{item.applicationName}</label>
           </div>
-        ))} */}
+        ))}
       </aside>
       <main>
-        {JSON.stringify(queue)}
-        {/* <header style={{ width: `${maxTime * pixelsPerQuantum}px` }}>
+        <header style={{ width: `${maxTime * pixelsPerQuantum}px` }}>
           {Array.from(Array(maxTime)).map((value, index) => (
             <div
               key={index}
@@ -46,9 +45,9 @@ export default function Timeline({ queue, pixelsPerQuantum }) {
           >
             <div className="arrival" style={{ width: item.arrivalWidth }} />
             <div className="waiting" style={{ width: item.waitingWidth }} />
-            <div className="burst" style={{ width: item.burstWidth }} />
+            <div className="running" style={{ width: item.runningWidth }} />
           </div>
-        ))} */}
+        ))}
       </main>
     </div>
   );

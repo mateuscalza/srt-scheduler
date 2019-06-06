@@ -103,7 +103,11 @@ code {
 .timeline .process {
   display: flex;
   height: 35px;
+  line-height: 35px;
   margin-bottom: 1px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .timeline header {
@@ -143,8 +147,12 @@ code {
 
 .timeline main .arrival {
   display: inline-block;
-  background-color: rgba(0, 0, 255, 0.7);
   height: 35px;
+
+  /* background-color: rgba(0, 0, 255, 0.7); */
+  border-right: 4px solid #2121de;
+  border-bottom: 4px solid #2121de;
+  background-color: #1919a6;
 }
 
 .timeline main .waiting {
@@ -153,7 +161,7 @@ code {
   height: 35px;
 }
 
-.timeline main .burst {
+.timeline main .running {
   display: inline-block;
   background-color: rgba(255, 0, 0, 0.7);
   height: 35px;

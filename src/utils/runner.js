@@ -49,7 +49,13 @@ export default function useRunner(msPerQuantum) {
       setColors(newColors);
 
       // Atualiza a fila
-      const newJobs = jobs.filter(job => job.arrivalTime === time);
+      const newJobs = jobs
+        .filter(job => job.arrivalTime === time)
+        .map(newJob => ({
+          ...newJob,
+          waitingTime: 0,
+          runningTime: 0
+        }));
       setQueue(currentQueue => [...currentQueue, ...newJobs]);
     }
   }, [time]);

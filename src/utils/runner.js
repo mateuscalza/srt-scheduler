@@ -4,6 +4,7 @@ import srt from '../schedulers/srt';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
+let initialized = false;
 const whiteColorChars = Array.from(Array(12)).map(() => '#fff');
 
 export default function useRunner(quantum) {
@@ -25,7 +26,8 @@ export default function useRunner(quantum) {
       // Ao iniciar reseta o tempo
       setTime(0);
       scheduler.onStart();
-    } else {
+      initialized = true;
+    } else if (initialized) {
       // Ao parar
       scheduler.onStop();
     }
@@ -41,7 +43,8 @@ export default function useRunner(quantum) {
         luminosity: 'bright'
       });
       setColors(newColors);
-      console.log('time!');
+
+      // Atualiza a fila
       setQueue([time]);
     }
   }, [time]);

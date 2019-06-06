@@ -4,7 +4,7 @@ export default function ScaleRange({ onChange, value }) {
   return (
     <label className="control">
       <p>
-        <strong className="title">Escala do grafico</strong>
+        <strong className="title">Escala</strong>
         <br />
         <small>Pixel por quantum</small>
       </p>

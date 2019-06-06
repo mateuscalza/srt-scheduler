@@ -7,7 +7,7 @@ import srt from '../schedulers/srt';
 let initialized = false;
 const whiteColorChars = Array.from(Array(12)).map(() => '#fff');
 
-export default function useRunner(quantum) {
+export default function useRunner(msPerQuantum) {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(-1);
   const [current] = useState(null);
@@ -65,9 +65,9 @@ export default function useRunner(quantum) {
           return newTime;
         });
       }
-    }, quantum);
+    }, msPerQuantum);
     return () => clearInterval(intervalId);
-  }, [quantum, running]);
+  }, [msPerQuantum, running]);
 
   return {
     running,

@@ -8,14 +8,14 @@ import useRunner from './utils/runner';
 import Title from './components/Title';
 
 function App() {
-  const [pixelsPerUnit, setPixelsPerUnit] = useLocalStorage(
-    'pixelsPerUnit',
+  const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(
+    'pixelsPerQuantum',
     30
   );
-  const [quantum, setQuantum] = useLocalStorage('quantum', 1000);
+  const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
   const [processes] = useState([]);
 
-  const runner = useRunner(quantum);
+  const runner = useRunner(msPerQuantum);
 
   return (
     <div className="app">
@@ -23,22 +23,21 @@ function App() {
 
       <div className="controls">
         <ScaleRange
-          value={pixelsPerUnit}
-          onChange={event => setPixelsPerUnit(event.target.value)}
+          value={pixelsPerQuantum}
+          onChange={event => setPixelsPerQuantum(event.target.value)}
         />
         <TimeRange
-          value={quantum}
-          onChange={event => setQuantum(event.target.value)}
+          value={msPerQuantum}
+          onChange={event => setMsPerQuantum(event.target.value)}
         />
         <RunControl
           status={runner.running}
           onStart={runner.run}
           onStop={runner.stop}
-          quantum={quantum}
           time={runner.time}
         />
       </div>
-      <Timeline processes={processes} pixelsPerUnit={pixelsPerUnit} />
+      <Timeline processes={processes} pixelsPerQuantum={pixelsPerQuantum} />
     </div>
   );
 }

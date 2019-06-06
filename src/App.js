@@ -34,6 +34,8 @@ function App() {
           status={runner.running}
           onStart={runner.run}
           onStop={runner.stop}
+          quantum={quantum}
+          time={runner.time}
         />
       </div>
       <Timeline processes={processes} pixelsPerUnit={pixelsPerUnit} />

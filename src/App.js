@@ -13,7 +13,7 @@ function App() {
     30
   );
   const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
-  const [processes] = useState([]);
+  // const [processes] = useState([]);
 
   const runner = useRunner(msPerQuantum);
 
@@ -37,7 +37,7 @@ function App() {
           time={runner.time}
         />
       </div>
-      <Timeline processes={processes} pixelsPerQuantum={pixelsPerQuantum} />
+      <Timeline queue={runner.queue} pixelsPerQuantum={pixelsPerQuantum} />
     </div>
   );
 }

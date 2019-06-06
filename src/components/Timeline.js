@@ -1,37 +1,38 @@
 import React from 'react';
 
-export default function Timeline({ processes, pixelsPerUnit }) {
-  const processesTimeline = processes.map(item => {
-    const totalTime = item.arrivalTime + item.burstTime + item.waitingTime;
+export default function Timeline({ queue, pixelsPerQuantum }) {
+  // const processesTimeline = processes.map(item => {
+  //   const totalTime = item.arrivalTime + item.burstTime + item.waitingTime;
 
-    return {
-      ...item,
-      totalTime,
-      totalWidth: pixelsPerUnit * totalTime,
-      arrivalWidth: pixelsPerUnit * item.arrivalTime,
-      waitingWidth: pixelsPerUnit * item.waitingTime,
-      burstWidth: pixelsPerUnit * item.burstTime
-    };
-  });
-  const maxTime = Math.max(0, ...processesTimeline.map(item => item.totalTime));
+  //   return {
+  //     ...item,
+  //     totalTime,
+  //     totalWidth: pixelsPerQuantum * totalTime,
+  //     arrivalWidth: pixelsPerQuantum * item.arrivalTime,
+  //     waitingWidth: pixelsPerQuantum * item.waitingTime,
+  //     burstWidth: pixelsPerQuantum * item.burstTime
+  //   };
+  // });
+  // const maxTime = Math.max(0, ...processesTimeline.map(item => item.totalTime));
 
   return (
     <div className="timeline">
       <aside>
         <header className="title">Processos</header>
-        {processes.map((item, index) => (
+        {/* {processes.map((item, index) => (
           <div key={index} className="process">
             <label>{item.applicationName}</label>
           </div>
-        ))}
+        ))} */}
       </aside>
       <main>
-        <header style={{ width: `${maxTime * pixelsPerUnit}px` }}>
+        {JSON.stringify(queue)}
+        {/* <header style={{ width: `${maxTime * pixelsPerQuantum}px` }}>
           {Array.from(Array(maxTime)).map((value, index) => (
             <div
               key={index}
               className="step"
-              style={{ width: `${pixelsPerUnit}px` }}
+              style={{ width: `${pixelsPerQuantum}px` }}
             >
               {index + 1}
             </div>
@@ -47,7 +48,7 @@ export default function Timeline({ processes, pixelsPerUnit }) {
             <div className="waiting" style={{ width: item.waitingWidth }} />
             <div className="burst" style={{ width: item.burstWidth }} />
           </div>
-        ))}
+        ))} */}
       </main>
     </div>
   );

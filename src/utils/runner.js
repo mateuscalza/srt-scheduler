@@ -73,6 +73,7 @@ export default function useRunner(msPerQuantum) {
     running,
     time,
     colors,
+    queue,
     run: () => setRunning(true),
     stop: () => setRunning(false)
   };

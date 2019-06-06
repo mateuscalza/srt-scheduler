@@ -6,7 +6,7 @@ export default function ScaleRange({ onChange, value }) {
       <p>
         <strong className="title">Escala do grafico</strong>
         <br />
-        <small>Pixel por unidade de tempo</small>
+        <small>Pixel por quantum</small>
       </p>
       <input
         type="range"
@@ -16,6 +16,7 @@ export default function ScaleRange({ onChange, value }) {
         value={value}
         onChange={onChange}
       />
+      <span className='range-value'>{value}px</span>
     </label>
   );
 }

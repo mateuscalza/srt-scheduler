@@ -10,12 +10,13 @@ export default function TimeRange({ onChange, value }) {
       </p>
       <input
         type="range"
-        min={50}
+        min={10}
         max={5000}
         step={1}
         value={value}
         onChange={onChange}
       />
+      <span className='range-value'>{value}ms</span>
     </label>
   );
 }

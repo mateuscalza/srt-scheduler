@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
+import randomColor from 'randomcolor';
 import srt from '../schedulers/srt';
 
 /* eslint-disable react-hooks/exhaustive-deps */
+
+const whiteColorChars = Array.from(Array(12)).map(() => '#fff');
 
 export default function useRunner(quantum) {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(-1);
   const [current] = useState(null);
   const [queue, setQueue] = useState([]);
+  const [colors, setColors] = useState(whiteColorChars);
 
   const processorControls = {};
-  const queueControls = {queue};
+  const queueControls = { queue };
 
   // Prepara o escalonador
   const scheduler = srt(current, processorControls, queueControls);
@@ -30,6 +34,14 @@ export default function useRunner(quantum) {
   // Manutenção da fila
   useEffect(() => {
     if (running) {
+      // Atualiza cores da logo
+      const updateIndex = time - 12 * Math.floor(time / 12);
+      const newColors = [...colors];
+      newColors[updateIndex] = randomColor({
+        luminosity: 'bright'
+      });
+      setColors(newColors);
+      console.log('time!');
       setQueue([time]);
     }
   }, [time]);
@@ -57,6 +69,7 @@ export default function useRunner(quantum) {
   return {
     running,
     time,
+    colors,
     run: () => setRunning(true),
     stop: () => setRunning(false)
   };

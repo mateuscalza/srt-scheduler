@@ -1,35 +1,25 @@
 import React, { useState } from 'react';
+import { useLocalStorage } from 'react-use';
 import Timeline from './components/Timeline';
 import ScaleRange from './components/ScaleRange';
 import TimeRange from './components/TimeRange';
 import RunControl from './components/RunControl';
 import useRunner from './utils/runner';
+import Title from './components/Title';
 
 function App() {
-  const [pixelsPerUnit, setPixelsPerUnit] = useState(30);
-  const [quantum, setQuantum] = useState(1000);
+  const [pixelsPerUnit, setPixelsPerUnit] = useLocalStorage(
+    'pixelsPerUnit',
+    30
+  );
+  const [quantum, setQuantum] = useLocalStorage('quantum', 1000);
   const [processes] = useState([]);
 
   const runner = useRunner(quantum);
 
   return (
     <div className="app">
-      <h1 className="title">
-        <span>S</span>
-        <span>R</span>
-        <span>T</span>
-        {' '}
-        <span>S</span>
-        <span>C</span>
-        <span>H</span>
-        <span>E</span>
-        <span>D</span>
-        <span>U</span>
-        <span>L</span>
-        <span>E</span>
-        <span>R</span>
-      </h1>
-      <h2>Simulador do escalonador SRT</h2>
+      <Title colors={runner.colors} />
 
       <div className="controls">
         <ScaleRange

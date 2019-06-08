@@ -6,7 +6,7 @@ export default function ScaleRange({ onChange, value }) {
       <p>
         <strong className="title">Escala</strong>
         <br />
-        <small>Pixel por quantum</small>
+        <small>Pixels por quantum</small>
       </p>
       <input
         type="range"

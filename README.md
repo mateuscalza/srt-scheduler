@@ -2,12 +2,14 @@
 
 ## A fazer
 
+- Corrigir bug que faz com que seja perdido um quantum a cada execução
 - Legenda
-- Teste de código
 - Tornar o scheduler inteligente para adivinhar o burst time
 - Comentários explicativos
 - Parar execução após executar todos os jobs
-- Corrigir bug que faz com que seja perdido um quantum a cada execução
+- Tela de configuração de quantos jobs, com o waiting time e burst time de cada um
+- Resetar cores da logo
+- Teste de código
 - Vídeo explicativo!
 
 ## Configuração necessária

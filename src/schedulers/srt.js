@@ -20,9 +20,9 @@ export default function srt(jobs) {
     });
 
   // Verifica se encontrou um job com o menor tempo restante
-  console.log('shortestRemainingTimeJob', shortestRemainingTimeJob);
   if (shortestRemainingTimeJob) {
     // Para todos que estejam rodando que não seja o com menor tempo restante
+    // Provando então a preemptividade do escalonador!
     jobs
       .filter(
         job => job.currentState === RUNNING && job !== shortestRemainingTimeJob

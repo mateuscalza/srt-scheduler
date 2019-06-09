@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RunControl({ status, onStart, onStop, time }) {
+export default function RunControl({ status, onStart, onConfigure, onStop, time }) {
   const handleStart = event => {
     event.preventDefault();
     if (!status) {
@@ -31,6 +31,9 @@ export default function RunControl({ status, onStart, onStop, time }) {
           className="start"
         >
           Iniciar
+        </button>
+        <button className="configure" disabled={status} onClick={onConfigure}>
+          Processos
         </button>
         <button className="stop" disabled={!status} onClick={handleStop}>
           Parar

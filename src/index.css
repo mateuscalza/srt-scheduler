@@ -13,7 +13,8 @@ body {
 }
 
 body,
-button {
+button,
+input {
   font-family: monospace, sans-serif;
   text-transform: uppercase;
   font-weight: 800;
@@ -169,16 +170,22 @@ code {
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 900;
+  margin-right: 10px;
 }
 .buttons button.start {
   border-right: 4px solid #00ff00;
   border-bottom: 4px solid #00ff00;
-  background-color: #111;
+  background-color: #006e00;
+}
+.buttons button.configure {
+  border-right: 4px solid #ffff00;
+  border-bottom: 4px solid #ffff00;
+  background-color: #8b8b00;
 }
 .buttons button.stop {
   border-right: 4px solid #fd0000;
   border-bottom: 4px solid #fd0000;
-  background-color: #111;
+  background-color: rgb(104, 0, 0);
 }
 
 .buttons button[disabled] {
@@ -310,6 +317,54 @@ input[type='range']:focus::-ms-fill-upper {
   border-bottom-style: solid;
   border-bottom-width: 4px;
 }
+
+/* Modal */
+
+.modal {
+  position: fixed;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Fieldset */
+fieldset {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  padding: 10px;
+  border: none;
+  border-right: 4px solid #333;
+  border-bottom: 4px solid #333;
+  background-color: #111;
+}
+
+/* Input */
+input[type='text'],
+input[type='number'] {
+  border: none;
+  border-left: 4px solid #ccc;
+  border-top: 4px solid #ccc;
+  background-color: #fff;
+  padding: 5px;
+  text-shadow: 1px 1px 0px rgba(220, 220, 220, 1),
+    2px 2px 0px rgba(220, 220, 220, 1), 3px 3px 0px rgba(220, 220, 220, 1),
+    4px 4px 0px rgba(220, 220, 220, 1);
+}
+
+/* Jobs */
+
+/* Responsive */
 
 @media screen and (max-width: 600px) {
   .controls {

@@ -40,7 +40,7 @@ export default function useRunner(msPerQuantum) {
         .filter(job => job.arrivalTime === time)
         .map(job => {
           return new Job({
-            name: job.applicationName,
+            name: job.name,
             arrivalTime: job.arrivalTime,
             burstTime: job.burstTime
           });

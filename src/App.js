@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import Timeline from './components/Timeline';
 import ScaleRange from './components/ScaleRange';
@@ -7,8 +7,16 @@ import RunControl from './components/RunControl';
 import useRunner from './utils/runner';
 import Title from './components/Title';
 import Legend from './components/Legend';
+import jobsConfig from './config/jobs';
+import Jobs from './components/Jobs';
 
 function App() {
+  // Abertura do painel de processos
+  const [isOpen, setIsOpen] = useState(true)
+
+  // Configuração de processos
+  const [jobs, setJobs] = useLocalStorage('jobs', jobsConfig);
+
   // Controle de pixels por quantum
   const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(
     'pixelsPerQuantum',
@@ -40,6 +48,7 @@ function App() {
           status={runner.running}
           onStart={runner.run}
           onStop={runner.stop}
+          onConfigure={() => setIsOpen(true)}
           time={runner.time}
         />
       </div>
@@ -51,6 +60,8 @@ function App() {
       />
 
       <Legend />
+
+      {isOpen ? <Jobs jobs={jobs} onChange={setJobs} onClose={() => setIsOpen(false)} /> : null}
     </div>
   );
 }

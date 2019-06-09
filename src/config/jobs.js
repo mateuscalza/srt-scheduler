@@ -1,21 +1,21 @@
 export default [
   {
-    applicationName: 'Google Chrome',
+    name: 'Google Chrome',
     arrivalTime: 0,
     burstTime: 2
   },
   {
-    applicationName: 'Notepad',
+    name: 'Notepad',
     arrivalTime: 1,
     burstTime: 3
   },
   {
-    applicationName: 'Netbeans',
+    name: 'Netbeans',
     arrivalTime: 5,
     burstTime: 8
   },
   {
-    applicationName: 'Spotify',
+    name: 'Spotify',
     arrivalTime: 7,
     burstTime: 3
   }

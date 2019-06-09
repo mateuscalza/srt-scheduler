@@ -10,7 +10,7 @@ import Title from './components/Title';
 function App() {
   const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(
     'pixelsPerQuantum',
-    30
+    50
   );
   const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
 
@@ -23,12 +23,14 @@ function App() {
       <div className="controls">
         <ScaleRange
           value={pixelsPerQuantum}
-          onChange={event => setPixelsPerQuantum(event.target.value)}
+          onChange={event => setPixelsPerQuantum(parseInt(event.target.value))}
         />
+
         <TimeRange
           value={msPerQuantum}
-          onChange={event => setMsPerQuantum(event.target.value)}
+          onChange={event => setMsPerQuantum(parseInt(event.target.value))}
         />
+
         <RunControl
           status={runner.running}
           onStart={runner.run}
@@ -36,7 +38,12 @@ function App() {
           time={runner.time}
         />
       </div>
-      <Timeline queue={runner.queue} pixelsPerQuantum={pixelsPerQuantum} />
+
+      <Timeline
+        jobs={runner.jobs}
+        time={runner.time}
+        pixelsPerQuantum={pixelsPerQuantum}
+      />
     </div>
   );
 }

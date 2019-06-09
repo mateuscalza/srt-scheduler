@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import randomColor from 'randomcolor';
 import srt from '../schedulers/srt';
-import jobs from '../config/jobs';
+import jobsConfig from '../config/jobs';
+import Job from './job';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -12,11 +13,11 @@ export default function useRunner(msPerQuantum) {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(-1);
   const [current] = useState(null);
-  const [queue, setQueue] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [colors, setColors] = useState(whiteColorChars);
 
   const processorControls = {};
-  const queueControls = { queue };
+  const queueControls = { jobs };
 
   // Prepara o escalonador
   const scheduler = srt(current, processorControls, queueControls);
@@ -26,7 +27,7 @@ export default function useRunner(msPerQuantum) {
     if (running) {
       // Ao iniciar reseta o tempo
       setTime(0);
-      setQueue([]);
+      setJobs([]);
       if (scheduler.onStart) {
         scheduler.onStart();
       }
@@ -49,23 +50,26 @@ export default function useRunner(msPerQuantum) {
       setColors(newColors);
 
       // Atualiza a fila
-      const newJobs = jobs
+      const newJobs = jobsConfig
         .filter(job => job.arrivalTime === time)
-        .map(newJob => ({
-          ...newJob,
-          waitingTime: 0,
-          runningTime: 0
-        }));
-      setQueue(currentQueue => [...currentQueue, ...newJobs]);
+        .map(job => {
+          return new Job({
+            name: job.applicationName,
+            arrivalTime: job.arrivalTime,
+            burstTime: job.burstTime
+          });
+        });
+
+      setJobs(oldJobs => [...oldJobs.map(job => job.tick(time)), ...newJobs]);
     }
   }, [time]);
 
   // Ao atualizar a fila
-  useEffect(() => {
-    if (running) {
-      scheduler.onQuantum(time);
-    }
-  }, [queue]);
+  // useEffect(() => {
+  //   if (running) {
+  //     scheduler.onQuantum(time);
+  //   }
+  // }, [queue]);
 
   // Temporizador para o quantum
   useEffect(() => {
@@ -84,7 +88,7 @@ export default function useRunner(msPerQuantum) {
     running,
     time,
     colors,
-    queue,
+    jobs,
     run: () => setRunning(true),
     stop: () => setRunning(false)
   };

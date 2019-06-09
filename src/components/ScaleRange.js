@@ -10,7 +10,7 @@ export default function ScaleRange({ onChange, value }) {
       </p>
       <input
         type="range"
-        min={30}
+        min={50}
         max={500}
         step={1}
         value={value}

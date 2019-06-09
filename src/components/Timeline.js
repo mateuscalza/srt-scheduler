@@ -1,54 +1,61 @@
 import React from 'react';
+import isEmpty from '../utils/empty';
+import { styles } from '../utils/states';
 
-export default function Timeline({ queue, pixelsPerQuantum }) {
-  const processesTimeline = queue.map(item => {
-    const totalTime = item.arrivalTime + item.runningTime + item.waitingTime;
+export default function Timeline({ jobs, time, pixelsPerQuantum }) {
+  if (time > 0) {
+    const timeSpaces = time > 0 ? Array.from(Array(time)) : [];
+    const fullWidth = time * (pixelsPerQuantum + 1);
+    console.log({ pixelsPerQuantum, time, fullWidth });
 
-    return {
-      ...item,
-      totalTime,
-      totalWidth: pixelsPerQuantum * totalTime,
-      arrivalWidth: pixelsPerQuantum * item.arrivalTime,
-      waitingWidth: pixelsPerQuantum * item.waitingTime,
-      runningWidth: pixelsPerQuantum * item.runningTime
-    };
-  });
-  const maxTime = Math.max(0, ...processesTimeline.map(item => item.totalTime));
-
-  return (
-    <div className="timeline">
-      <aside>
-        <header className="title">Processos</header>
-        {queue.map((item, index) => (
-          <div key={index} className="process">
-            <label>{item.applicationName}</label>
-          </div>
-        ))}
-      </aside>
-      <main>
-        <header style={{ width: `${maxTime * pixelsPerQuantum}px` }}>
-          {Array.from(Array(maxTime)).map((value, index) => (
-            <div
-              key={index}
-              className="step"
-              style={{ width: `${pixelsPerQuantum}px` }}
-            >
-              {index + 1}
+    return (
+      <div className="timeline">
+        <aside>
+          <header className="title">Processos</header>
+          {jobs.map((item, index) => (
+            <div key={index} className="process">
+              <label>{item.name}</label>
             </div>
           ))}
-        </header>
-        {processesTimeline.map((item, index) => (
-          <div
-            key={index}
-            className="process"
-            style={{ width: item.totalWidth }}
-          >
-            <div className="arrival" style={{ width: item.arrivalWidth }} />
-            <div className="waiting" style={{ width: item.waitingWidth }} />
-            <div className="running" style={{ width: item.runningWidth }} />
-          </div>
-        ))}
-      </main>
-    </div>
-  );
+        </aside>
+        {time > 0 ? (
+          <main>
+            <header style={{ width: fullWidth }}>
+              {timeSpaces.map((value, index) => (
+                <div
+                  key={index}
+                  className="step"
+                  style={{ width: `${pixelsPerQuantum}px` }}
+                >
+                  {index + 1}
+                </div>
+              ))}
+            </header>
+
+            {jobs.map((job, index) => (
+              <div key={index} className="process" style={{ width: fullWidth }}>
+                {timeSpaces.map((value, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="step"
+                      title={`${index + 1} - job`}
+                      style={{
+                        width: `${pixelsPerQuantum}px`,
+                        ...(isEmpty(job.history[index + 1])
+                          ? {}
+                          : styles[job.history[index + 1]])
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+          </main>
+        ) : null}
+      </div>
+    );
+  }
+
+  return null;
 }

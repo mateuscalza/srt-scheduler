@@ -11,7 +11,7 @@ export default class Job {
     this.currentState = READY;
     this.ended = false;
 
-    this.tick(arrivalTime);
+    this.history[arrivalTime] = this.currentState;
   }
 
   tick(time) {
@@ -21,7 +21,7 @@ export default class Job {
 
     if (this.currentState === RUNNING) {
       this.remainingTime -= 1;
-      if (this.remainingTime <= 0) {
+      if (this.remainingTime < 0) {
         this.end();
       }
     }

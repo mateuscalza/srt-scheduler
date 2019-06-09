@@ -6,21 +6,13 @@ import Job from './job';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
-let initialized = false;
 const whiteColorChars = Array.from(Array(12)).map(() => '#fff');
 
 export default function useRunner(msPerQuantum) {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(-1);
-  const [current] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [colors, setColors] = useState(whiteColorChars);
-
-  const processorControls = {};
-  const queueControls = { jobs };
-
-  // Prepara o escalonador
-  const scheduler = srt(current, processorControls, queueControls);
 
   // Sempre que o estado de "running" mudar
   useEffect(() => {
@@ -28,13 +20,6 @@ export default function useRunner(msPerQuantum) {
       // Ao iniciar reseta o tempo
       setTime(0);
       setJobs([]);
-      if (scheduler.onStart) {
-        scheduler.onStart();
-      }
-      initialized = true;
-    } else if (initialized && scheduler.onStop) {
-      // Ao parar
-      scheduler.onStop();
     }
   }, [running]);
 
@@ -49,7 +34,7 @@ export default function useRunner(msPerQuantum) {
       });
       setColors(newColors);
 
-      // Atualiza a fila
+      // Gera novos jobs
       const newJobs = jobsConfig
         .filter(job => job.arrivalTime === time)
         .map(job => {
@@ -60,16 +45,16 @@ export default function useRunner(msPerQuantum) {
           });
         });
 
-      setJobs(oldJobs => [...oldJobs.map(job => job.tick(time)), ...newJobs]);
+      setJobs(oldJobs => {
+        console.log('time', time);
+
+        const oldJobsUpdated = oldJobs.map(job => job.tick(time));
+        const allJobs = [...oldJobsUpdated, ...newJobs];
+
+        return srt(allJobs);
+      });
     }
   }, [time]);
-
-  // Ao atualizar a fila
-  // useEffect(() => {
-  //   if (running) {
-  //     scheduler.onQuantum(time);
-  //   }
-  // }, [queue]);
 
   // Temporizador para o quantum
   useEffect(() => {

@@ -6,7 +6,6 @@ export default function Timeline({ jobs, time, pixelsPerQuantum }) {
   if (time > 0) {
     const timeSpaces = time > 0 ? Array.from(Array(time)) : [];
     const fullWidth = time * (pixelsPerQuantum + 1);
-    console.log({ pixelsPerQuantum, time, fullWidth });
 
     return (
       <div className="timeline">

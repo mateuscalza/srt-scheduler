@@ -352,6 +352,7 @@ fieldset {
 /* Input */
 input[type='text'],
 input[type='number'] {
+  width: 100%;
   border: none;
   border-left: 4px solid #ccc;
   border-top: 4px solid #ccc;

@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Chance } from 'chance';
 import randomColor from 'randomcolor';
 import srt from '../schedulers/srt';
-import jobsConfig from '../config/jobs';
 import Job from './job';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
+let jobsConfig = null;
+const chance = new Chance();
 const whiteColorChars = Array.from(Array(12)).map(() => '#fff');
 
-export default function useRunner(msPerQuantum) {
+export default function useRunner(msPerQuantum, inputJobsConfig) {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(-1);
   const [jobs, setJobs] = useState([]);
@@ -17,12 +19,30 @@ export default function useRunner(msPerQuantum) {
   // Sempre que o estado de "running" mudar
   useEffect(() => {
     if (running) {
-      // Ao iniciar reseta o tempo
+      // Ao iniciar reseta o tempo;
       setTime(0);
       setJobs([]);
       setColors(whiteColorChars);
     }
   }, [running]);
+
+  // Sorteia tempo de chegada e execução
+  const prepareJobs = () => {
+    if (!jobsConfig) {
+      jobsConfig = inputJobsConfig.map(job => ({
+        ...inputJobsConfig,
+        definedArrivalTime: chance.integer({
+          min: Math.min(...job.arrivalTime),
+          max: Math.max(...job.arrivalTime)
+        }),
+        definedBurstTime: chance.integer({
+          min: Math.min(...job.burstTime),
+          max: Math.max(...job.burstTime)
+        })
+      }));
+      console.log('jobsConfig', JSON.stringify(jobsConfig));
+    }
+  };
 
   // Manutenção da fila
   useEffect(() => {
@@ -35,14 +55,17 @@ export default function useRunner(msPerQuantum) {
       });
       setColors(newColors);
 
+      // Prepara os jobs
+      prepareJobs();
+
       // Gera novos jobs
       const newJobs = jobsConfig
-        .filter(job => job.arrivalTime === time)
+        .filter(job => job.definedArrivalTime === time)
         .map(job => {
           return new Job({
             name: job.name,
-            arrivalTime: job.arrivalTime,
-            burstTime: job.burstTime
+            arrivalTime: job.definedArrivalTime,
+            burstTime: job.definedBurstTime
           });
         });
 
@@ -59,7 +82,9 @@ export default function useRunner(msPerQuantum) {
   // Sempre que mudar os jobs
   useEffect(() => {
     // Analisa se todos foram concluídos para parar o algoritmo
+    prepareJobs();
     if (jobs.length === jobsConfig.length && jobs.every(job => job.ended)) {
+      jobsConfig = null;
       setRunning(false);
     }
   }, [jobs]);
@@ -83,6 +108,9 @@ export default function useRunner(msPerQuantum) {
     colors,
     jobs,
     run: () => setRunning(true),
-    stop: () => setRunning(false)
+    stop: () => {
+      jobsConfig = null;
+      setRunning(false);
+    }
   };
 }

@@ -20,14 +20,14 @@ function App() {
   // Controle de pixels por quantum
   const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(
     'pixelsPerQuantum',
-    50
+    100
   );
 
   // Controle de milissegundos por quantum
   const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
 
   // Runner
-  const runner = useRunner(msPerQuantum);
+  const runner = useRunner(msPerQuantum, jobs);
 
   return (
     <div className="app">

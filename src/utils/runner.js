@@ -47,15 +47,16 @@ export default function useRunner(msPerQuantum) {
         });
 
       setJobs(oldJobs => {
+        // Aplica o SRT para tomar decisões, juntando os jobs antigos e os novos
         const allJobs = srt([...oldJobs, ...newJobs]);
-        const syncedAllJobs = allJobs.map(job => job.tick(time));
-        return syncedAllJobs;
+
+        // Em cada job, avança o contador, para que avancem em seus estados
+        return allJobs.map(job => job.tick(time));
       });
     }
   }, [time]);
 
   // Sempre que mudar os jobs
-
   useEffect(() => {
     // Analisa se todos foram concluídos para parar o algoritmo
     if (jobs.length === jobsConfig.length && jobs.every(job => job.ended)) {

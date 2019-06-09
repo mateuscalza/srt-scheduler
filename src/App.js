@@ -6,14 +6,19 @@ import TimeRange from './components/TimeRange';
 import RunControl from './components/RunControl';
 import useRunner from './utils/runner';
 import Title from './components/Title';
+import Legend from './components/Legend';
 
 function App() {
+  // Controle de pixels por quantum
   const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(
     'pixelsPerQuantum',
     50
   );
+
+  // Controle de milissegundos por quantum
   const [msPerQuantum, setMsPerQuantum] = useLocalStorage('quantum', 1000);
 
+  // Runner
   const runner = useRunner(msPerQuantum);
 
   return (
@@ -44,6 +49,8 @@ function App() {
         time={runner.time}
         pixelsPerQuantum={pixelsPerQuantum}
       />
+
+      <Legend />
     </div>
   );
 }

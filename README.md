@@ -2,11 +2,8 @@
 
 ## A fazer
 
-- Legenda
 - Tornar o scheduler inteligente para adivinhar o burst time
-- Comentários explicativos
-- Parar execução após executar todos os jobs
-- Tela de configuração de quantos jobs, com o waiting time e burst time de cada um
+- Tela de configuração de quantos jobs, com o arrival time e burst time de cada um
 - Teste de código
 - Vídeo explicativo!
 

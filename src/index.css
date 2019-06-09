@@ -59,6 +59,7 @@ h2 {
 *::after,
 *::before {
   box-sizing: border-box;
+  user-select: none;
 }
 
 code {
@@ -280,6 +281,34 @@ input[type='range']:focus::-ms-fill-upper {
   border-right: 2px solid #333;
   border-bottom: 2px solid #333;
   background-color: #111;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.legend .badge {
+  flex: 1 0;
+  display: flex;
+  max-width: 120px;
+  margin: 10px;
+  justify-content: center;
+  padding: 3px;
+  font-size: 15px;
+  text-align: center;
+  border-left-style: solid;
+  border-left-color: transparent;
+  border-left-width: 1px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-right-style: solid;
+  border-right-width: 4px;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
 }
 
 @media screen and (max-width: 600px) {

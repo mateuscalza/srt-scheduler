@@ -1,5 +1,6 @@
 import React from 'react';
 import Close from './icons/Close';
+import defaultJobsConfig from '../config/jobs';
 
 function JobName({ value, onChange }) {
   return (
@@ -82,11 +83,38 @@ function JobBurstTime({ value, onChange }) {
 }
 
 export default function Jobs({ jobs, onChange, onClose }) {
-  const updateJob = (index, key, value) => {
+  const handleUpdateJob = (index, key, value) => {
     onChange(oldJobs => {
       const newJobs = [...oldJobs];
       newJobs[index][key] = value;
       return newJobs;
+    });
+  };
+
+  const handleChangeProcessStackSize = size => {
+    onChange(oldJobs => {
+      if (size < oldJobs.length) {
+        return [...oldJobs].slice(0, size);
+      } else if (size > oldJobs.length) {
+        return [
+          ...oldJobs,
+          ...Array.from(Array(size - oldJobs.length)).map(
+            (value, index) =>
+              defaultJobsConfig[oldJobs.length + index] || {
+                name: `Novo #${oldJobs.length +
+                  index -
+                  defaultJobsConfig.length +
+                  1}`,
+                arrivalTime: [
+                  (oldJobs.length + index) * 4,
+                  (oldJobs.length + index) * 4
+                ],
+                burstTime: [2, 7]
+              }
+          )
+        ];
+      }
+      return oldJobs;
     });
   };
 
@@ -97,23 +125,40 @@ export default function Jobs({ jobs, onChange, onClose }) {
           <h2 className="title">Processos</h2>
           <Close width={30} height={30} onClick={onClose} />
         </header>
+
+        <label className="control">
+          <p>
+            <strong className="title">Quantidade</strong>
+          </p>
+          <input
+            type="number"
+            value={jobs.length}
+            min={2}
+            max={50}
+            onChange={event =>
+              handleChangeProcessStackSize(Number(event.target.value))
+            }
+            required
+          />
+        </label>
+
         {jobs.map((job, index) => (
           <fieldset key={index}>
             <legend className="title">#{index}</legend>
             <div className="controls">
               <JobName
                 value={job.name}
-                onChange={value => updateJob(index, 'name', value)}
+                onChange={value => handleUpdateJob(index, 'name', value)}
               />
 
               <JobArrivalTime
                 value={job.arrivalTime}
-                onChange={value => updateJob(index, 'arrivalTime', value)}
+                onChange={value => handleUpdateJob(index, 'arrivalTime', value)}
               />
 
               <JobBurstTime
                 value={job.burstTime}
-                onChange={value => updateJob(index, 'burstTime', value)}
+                onChange={value => handleUpdateJob(index, 'burstTime', value)}
               />
             </div>
           </fieldset>

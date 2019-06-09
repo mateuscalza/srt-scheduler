@@ -7,15 +7,15 @@ import RunControl from './components/RunControl';
 import useRunner from './utils/runner';
 import Title from './components/Title';
 import Legend from './components/Legend';
-import jobsConfig from './config/jobs';
+import defaultJobsConfig from './config/jobs';
 import Jobs from './components/Jobs';
 
 function App() {
   // Abertura do painel de processos
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   // Configuração de processos
-  const [jobs, setJobs] = useLocalStorage('jobs', jobsConfig);
+  const [jobs, setJobs] = useLocalStorage('jobs', defaultJobsConfig);
 
   // Controle de pixels por quantum
   const [pixelsPerQuantum, setPixelsPerQuantum] = useLocalStorage(

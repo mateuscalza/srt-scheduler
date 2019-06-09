@@ -30,7 +30,7 @@ export default function useRunner(msPerQuantum, inputJobsConfig) {
   const prepareJobs = () => {
     if (!jobsConfig) {
       jobsConfig = inputJobsConfig.map(job => ({
-        ...inputJobsConfig,
+        ...job,
         definedArrivalTime: chance.integer({
           min: Math.min(...job.arrivalTime),
           max: Math.max(...job.arrivalTime)
@@ -40,7 +40,6 @@ export default function useRunner(msPerQuantum, inputJobsConfig) {
           max: Math.max(...job.burstTime)
         })
       }));
-      console.log('jobsConfig', JSON.stringify(jobsConfig));
     }
   };
 

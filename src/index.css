@@ -139,19 +139,13 @@ code {
 .timeline main header {
   display: block;
 }
-.timeline main header .step {
-  display: inline-block;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
-  text-align: center;
-}
-
 .timeline main .step {
   display: inline-block;
   height: 35px;
-
-  border-left-style: none;
+  text-align: center;
+  border-left-style: solid;
   border-left-color: transparent;
-  border-top-style: none;
+  border-left-width: 1px;
   border-top-color: transparent;
   border-right-color: transparent;
   border-right-style: solid;
@@ -159,7 +153,6 @@ code {
   border-bottom-color: transparent;
   border-bottom-style: solid;
   border-bottom-width: 4px;
-  margin-left: 1px;
 }
 
 /* Run controls */

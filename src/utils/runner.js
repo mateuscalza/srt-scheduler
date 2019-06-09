@@ -20,6 +20,7 @@ export default function useRunner(msPerQuantum) {
       // Ao iniciar reseta o tempo
       setTime(0);
       setJobs([]);
+      setColors(whiteColorChars);
     }
   }, [running]);
 
@@ -46,15 +47,21 @@ export default function useRunner(msPerQuantum) {
         });
 
       setJobs(oldJobs => {
-        console.log('time', time);
-
-        const oldJobsUpdated = oldJobs.map(job => job.tick(time));
-        const allJobs = [...oldJobsUpdated, ...newJobs];
-
-        return srt(allJobs);
+        const allJobs = srt([...oldJobs, ...newJobs]);
+        const syncedAllJobs = allJobs.map(job => job.tick(time));
+        return syncedAllJobs;
       });
     }
   }, [time]);
+
+  // Sempre que mudar os jobs
+
+  useEffect(() => {
+    // Analisa se todos foram concluídos para parar o algoritmo
+    if (jobs.length === jobsConfig.length && jobs.every(job => job.ended)) {
+      setRunning(false);
+    }
+  }, [jobs]);
 
   // Temporizador para o quantum
   useEffect(() => {

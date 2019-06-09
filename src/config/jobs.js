@@ -1,7 +1,7 @@
 export default [
   {
     applicationName: 'Google Chrome',
-    arrivalTime: 1,
+    arrivalTime: 0,
     burstTime: 2
   },
   {
@@ -16,7 +16,7 @@ export default [
   },
   {
     applicationName: 'Spotify',
-    arrivalTime: 9,
+    arrivalTime: 7,
     burstTime: 3
   }
 ];

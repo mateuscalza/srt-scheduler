@@ -10,8 +10,6 @@ export default class Job {
     this.history = Array(arrivalTime);
     this.currentState = READY;
     this.ended = false;
-
-    this.history[arrivalTime] = this.currentState;
   }
 
   tick(time) {
@@ -19,14 +17,14 @@ export default class Job {
       return this;
     }
 
+    this.history[time] = this.currentState;
+
     if (this.currentState === RUNNING) {
       this.remainingTime -= 1;
-      if (this.remainingTime < 0) {
+      if (this.remainingTime <= 0) {
         this.end();
       }
     }
-
-    this.history[time] = this.currentState;
     return this;
   }
 

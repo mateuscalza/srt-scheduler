@@ -4,8 +4,8 @@ import { styles } from '../utils/states';
 
 export default function Timeline({ jobs, time, pixelsPerQuantum }) {
   if (time > 0) {
-    const timeSpaces = time > 0 ? Array.from(Array(time)) : [];
-    const fullWidth = time * (pixelsPerQuantum + 1);
+    const timeSpaces = Array.from(Array(time + 1));
+    const fullWidth = (time + 1) * pixelsPerQuantum;
 
     return (
       <div className="timeline">
@@ -19,14 +19,16 @@ export default function Timeline({ jobs, time, pixelsPerQuantum }) {
         </aside>
         {time > 0 ? (
           <main>
-            <header style={{ width: fullWidth }}>
+            <header
+              style={{ width: fullWidth }}
+            >
               {timeSpaces.map((value, index) => (
                 <div
                   key={index}
                   className="step"
                   style={{ width: `${pixelsPerQuantum}px` }}
                 >
-                  {index + 1}
+                  {index}
                 </div>
               ))}
             </header>
@@ -38,12 +40,12 @@ export default function Timeline({ jobs, time, pixelsPerQuantum }) {
                     <div
                       key={index}
                       className="step"
-                      title={`${index + 1} - job`}
+                      title={index}
                       style={{
                         width: `${pixelsPerQuantum}px`,
-                        ...(isEmpty(job.history[index + 1])
+                        ...(isEmpty(job.history[index])
                           ? {}
-                          : styles[job.history[index + 1]])
+                          : styles[job.history[index]])
                       }}
                     />
                   );

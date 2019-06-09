@@ -6,7 +6,7 @@ export default [
   },
   {
     applicationName: 'Notepad',
-    arrivalTime: 2,
+    arrivalTime: 1,
     burstTime: 3
   },
   {

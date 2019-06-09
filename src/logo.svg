@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
-    <title>Icon</title>
-    <desc>Created with Sketch.</desc>
     <g id="Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="logo" transform="translate(38.000000, 17.000000)" fill-rule="nonzero">
             <path d="M330.549184,154 C324.259027,153.994468 318.590694,150.203561 316.184304,144.392955 C313.777913,138.582349 315.106693,131.894724 319.551741,127.444953 L361.051525,85.9526916 C364.931144,81.7899146 370.774002,80.0763671 376.28794,81.4842751 C381.801879,82.892183 386.107474,87.1969974 387.515637,92.7099365 C388.9238,98.2228756 387.209942,104.064674 383.04641,107.94359 L341.546626,149.435851 C338.517142,152.485532 334.533163,154 330.549184,154 L330.549184,154 Z" id="Path" fill="#335262"></path>

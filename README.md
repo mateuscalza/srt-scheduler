@@ -1,4 +1,6 @@
-# SRT Scheduler
+# SRT/SRTF - Shortest Remaining Time First Scheduler Simulator
+
+Simulador do escalonador por menor tempo restante.
 
 ## A fazer
 

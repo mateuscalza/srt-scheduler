@@ -1,4 +1,4 @@
-import * as math from 'mathjs';
+import exponentialSmoothing from './exponentialSmoothing';
 
 // Estima o tempo restante
 export function estimateRemainingTime(job) {
@@ -13,11 +13,8 @@ export function estimateRemainingTime(job) {
   // Converte para um Array
   const currentTimes = JSON.parse(currentTimesStorage);
 
-  // Faz a média do tempo de execução
-  const commonElapsedTime = math.divide(
-    math.sum(...currentTimes),
-    currentTimes.length
-  );
+  // Faz a média exponencial do tempo de execução
+  const commonElapsedTime = exponentialSmoothing(currentTimes);
 
   // Descobre o tempo restante diminuindo o que já foi rodado do prazo estimado
   const remainingTime = commonElapsedTime - job.elapsedTime;

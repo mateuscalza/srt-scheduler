@@ -2,10 +2,7 @@
 
 ## A fazer
 
-- Tornar o scheduler inteligente para adivinhar o burst time
-- Tela de configuração de quantos jobs, com o arrival time e burst time de cada um
-- Teste de código
-- Vídeo explicativo!
+- Testes automatizados!
 
 ## Configuração necessária
 

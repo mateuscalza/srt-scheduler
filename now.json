@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "srt-scheduler",
+  "alias": "srt",
   "builds": [
     {
       "src": "package.json",

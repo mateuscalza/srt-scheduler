@@ -3,7 +3,7 @@ import { estimateRemainingTime } from '../utils/timeEstimation';
 
 // SRT escolhe os Jobs pelo menor tempo restante
 export default function srt(jobs) {
-  // Seleciona o primeiro job
+  // Variável para armazenar o job com menor tempo restante
   let shortestRemainingTimeJob = null;
 
   // Percorre todos os jobs que não estão finalizados
@@ -11,6 +11,7 @@ export default function srt(jobs) {
     .filter(job => !job.ended)
     .forEach(job => {
       // Verifica se o job iterado tem um tempo restante menor que o job anterior
+      // Usa a função estimateRemainingTime para estimar o tempo restante
       if (
         !shortestRemainingTimeJob ||
         estimateRemainingTime(job) <

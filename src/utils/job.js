@@ -1,11 +1,13 @@
 import { READY, RUNNING, BLOCKED } from './states';
+import { saveMetric } from './timeEstimation';
 
 export default class Job {
-  constructor({ name, arrivalTime, burstTime }) {
+  constructor({ id, name, arrivalTime, burstTime }) {
+    this.id = id;
     this.name = name;
     this.arrivalTime = arrivalTime;
     this.burstTime = burstTime;
-    this.remainingTime = burstTime;
+    this.elapsedTime = 0;
 
     this.history = Array(arrivalTime);
     this.currentState = READY;
@@ -20,8 +22,8 @@ export default class Job {
     this.history[time] = this.currentState;
 
     if (this.currentState === RUNNING) {
-      this.remainingTime -= 1;
-      if (this.remainingTime <= 0) {
+      this.elapsedTime += 1;
+      if (this.elapsedTime >= this.burstTime) {
         this.end();
       }
     }
@@ -41,6 +43,7 @@ export default class Job {
   end() {
     this.currentState = null;
     this.ended = true;
+    saveMetric(this);
     return this;
   }
 }

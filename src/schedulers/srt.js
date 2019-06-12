@@ -1,4 +1,5 @@
 import { RUNNING } from '../utils/states';
+import { estimateRemainingTime } from '../utils/timeEstimation';
 
 // SRT escolhe os Jobs pelo menor tempo restante
 export default function srt(jobs) {
@@ -12,7 +13,8 @@ export default function srt(jobs) {
       // Verifica se o job iterado tem um tempo restante menor que o job anterior
       if (
         !shortestRemainingTimeJob ||
-        job.remainingTime < shortestRemainingTimeJob.remainingTime
+        estimateRemainingTime(job) <
+          estimateRemainingTime(shortestRemainingTimeJob)
       ) {
         // Se sim, seleciona o job iterado
         shortestRemainingTimeJob = job;

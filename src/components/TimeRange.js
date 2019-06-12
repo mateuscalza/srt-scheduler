@@ -16,7 +16,7 @@ export default function TimeRange({ onChange, value }) {
         value={value}
         onChange={onChange}
       />
-      <span className='range-value'>{value}ms</span>
+      <span className="range-value">{value}ms</span>
     </label>
   );
 }

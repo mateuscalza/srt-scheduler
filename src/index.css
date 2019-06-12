@@ -171,6 +171,7 @@ code {
   font-size: 16px;
   font-weight: 900;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 .buttons button.start {
   border-right: 4px solid #00ff00;
@@ -181,6 +182,11 @@ code {
   border-right: 4px solid #ffff00;
   border-bottom: 4px solid #ffff00;
   background-color: #8b8b00;
+}
+.buttons button.reset {
+  border-right: 4px solid #5f27cd;
+  border-bottom: 4px solid #5f27cd;
+  background-color: #341f97;
 }
 .buttons button.stop {
   border-right: 4px solid #fd0000;

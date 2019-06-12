@@ -62,6 +62,7 @@ export default function useRunner(msPerQuantum, inputJobsConfig) {
         .filter(job => job.definedArrivalTime === time)
         .map(job => {
           return new Job({
+            id: job.id,
             name: job.name,
             arrivalTime: job.definedArrivalTime,
             burstTime: job.definedBurstTime

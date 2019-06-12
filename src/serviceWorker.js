@@ -19,9 +19,7 @@ export function register(config) {
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'Primeiro cache!'
-          );
+          console.log('Primeiro cache!');
         });
       } else {
         registerValidSW(swUrl, config);
@@ -42,9 +40,7 @@ function registerValidSW(swUrl, config) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              console.log(
-                'Novo conteúdo disponível!'
-              );
+              console.log('Novo conteúdo disponível!');
 
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
@@ -84,9 +80,7 @@ function checkValidServiceWorker(swUrl, config) {
       }
     })
     .catch(() => {
-      console.log(
-        'Rodando no modo offline!'
-      );
+      console.log('Rodando no modo offline!');
     });
 }
 

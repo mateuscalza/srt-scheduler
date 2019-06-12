@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import Close from './icons/Close';
 import defaultJobsConfig from '../config/jobs';
 
@@ -101,6 +102,7 @@ export default function Jobs({ jobs, onChange, onClose }) {
           ...Array.from(Array(size - oldJobs.length)).map(
             (value, index) =>
               defaultJobsConfig[oldJobs.length + index] || {
+                id: uuid(),
                 name: `Novo #${oldJobs.length +
                   index -
                   defaultJobsConfig.length +
@@ -109,7 +111,7 @@ export default function Jobs({ jobs, onChange, onClose }) {
                   (oldJobs.length + index) * 4,
                   (oldJobs.length + index) * 4
                 ],
-                burstTime: [2, 7]
+                burstTime: Math.random() >= 0.3 ? [2, 4] : [7, 8]
               }
           )
         ];
@@ -134,7 +136,7 @@ export default function Jobs({ jobs, onChange, onClose }) {
             type="number"
             value={jobs.length}
             min={2}
-            max={50}
+            max={25}
             onChange={event =>
               handleChangeProcessStackSize(Number(event.target.value))
             }

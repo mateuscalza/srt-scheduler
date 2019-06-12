@@ -16,7 +16,7 @@ export default function ScaleRange({ onChange, value }) {
         value={value}
         onChange={onChange}
       />
-      <span className='range-value'>{value}px</span>
+      <span className="range-value">{value}px</span>
     </label>
   );
 }

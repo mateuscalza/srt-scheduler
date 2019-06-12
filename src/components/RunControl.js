@@ -1,12 +1,19 @@
 import React from 'react';
 
-export default function RunControl({ status, onStart, onConfigure, onStop, time }) {
+export default function RunControl({
+  status,
+  onStart,
+  onConfigure,
+  onStop,
+  time
+}) {
   const handleStart = event => {
     event.preventDefault();
     if (!status) {
       onStart();
     }
   };
+
   const handleStop = event => {
     event.preventDefault();
     if (status) {
@@ -14,8 +21,14 @@ export default function RunControl({ status, onStart, onConfigure, onStop, time 
     }
   };
 
+  const handleReset = event => {
+    event.preventDefault();
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
-    <label className="control">
+    <div className="control">
       <p>
         <strong className="title">Controles</strong>
         <br />
@@ -24,21 +37,19 @@ export default function RunControl({ status, onStart, onConfigure, onStop, time 
         <small>Quantuns: {time > 0 ? time : 0}</small>
       </p>
       <div className="buttons">
-        <button
-          style={{ marginRight: 10 }}
-          disabled={status}
-          onClick={handleStart}
-          className="start"
-        >
+        <button disabled={status} onClick={handleStart} className="start">
           Iniciar
         </button>
         <button className="configure" disabled={status} onClick={onConfigure}>
           Processos
         </button>
+        <button className="reset" disabled={status} onClick={handleReset}>
+          Resetar
+        </button>
         <button className="stop" disabled={!status} onClick={handleStop}>
           Parar
         </button>
       </div>
-    </label>
+    </div>
   );
 }

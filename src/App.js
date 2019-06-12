@@ -12,7 +12,7 @@ import Jobs from './components/Jobs';
 
 function App() {
   // Abertura do painel de processos
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   // Configuração de processos
   const [jobs, setJobs] = useLocalStorage('jobs', defaultJobsConfig);
@@ -61,7 +61,9 @@ function App() {
 
       <Legend />
 
-      {isOpen ? <Jobs jobs={jobs} onChange={setJobs} onClose={() => setIsOpen(false)} /> : null}
+      {isOpen ? (
+        <Jobs jobs={jobs} onChange={setJobs} onClose={() => setIsOpen(false)} />
+      ) : null}
     </div>
   );
 }

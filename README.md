@@ -1,4 +1,6 @@
-# SRT Scheduler
+# SRT Scheduler Simulator
+
+Simulador do escalonador por menor tempo restante.
 
 ## A fazer
 

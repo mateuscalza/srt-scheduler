@@ -1,18 +1,19 @@
 {
   "name": "srt-scheduler",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "dependencies": {
-    "chance": "^1.0.18",
-    "keyboardjs": "^2.5.1",
-    "mathjs": "^6.0.2",
-    "randomcolor": "^0.5.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "chance": "1.0.18",
+    "keyboardjs": "2.5.1",
+    "mathjs": "6.0.2",
+    "randomcolor": "0.5.4",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "react-scripts": "3.0.1",
-    "react-use": "^9.4.0",
-    "rebound": "^0.1.0",
-    "uuid": "^3.3.2"
+    "react-use": "9.4.0",
+    "rebound": "0.1.0",
+    "uuid": "3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

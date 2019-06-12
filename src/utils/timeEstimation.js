@@ -22,6 +22,8 @@ export function estimateRemainingTime(job) {
   // Descobre o tempo restante diminuindo o que já foi rodado do prazo estimado
   const remainingTime = commonElapsedTime - job.elapsedTime;
 
+  console.info(`Job ${job.name} estimado em ${commonElapsedTime} quantuns.`);
+
   return remainingTime;
 }
 
